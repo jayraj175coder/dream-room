@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Room Visualizer</title>
+
+<style>
+:root {
+  --bg1: #f3e5f5;
+  --bg2: #e1f5fe;
+  --accent: #6a1b9a;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(120deg, var(--bg1), var(--bg2));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.app {
+  width: 95%;
+  max-width: 700px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.preview {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.preview img {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.tag {
+  margin-top: 10px;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+  <h1>🏠 Dream Room Visualizer</h1>
+
+  <input type="text" id="size" placeholder="Enter room size (e.g. 10x12 ft)">
+  
+  <select id="style">
+    <option value="">Select Style</option>
+    <option value="cyberpunk">Cyberpunk</option>
+    <option value="boho">Boho</option>
+    <option value="minimal">Minimal</option>
+    <option value="modern">Modern</option>
+    <option value="gaming">Gaming</option>
+  </select>
+
+  <button onclick="generateRoom()">Generate Room</button>
+
+  <div class="preview" id="preview">
+    <p>Enter details to visualize your dream room</p>
+  </div>
+</div>
+
+<script>
+const styles = {
+  cyberpunk: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+  boho: "https://images.unsplash.com/photo-1505691938895-1758d7feb511",
+  minimal: "https://images.unsplash.com/photo-1493666438817-866a91353ca9",
+  modern: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6",
+  gaming: "https://images.unsplash.com/photo-1605902711622-cfb43c44367f"
+};
+
+function generateRoom() {
+  const size = document.getElementById("size").value;
+  const style = document.getElementById("style").value;
+  const preview = document.getElementById("preview");
+
+  if (!size || !style) {
+    preview.innerHTML = "<p>Please fill all details</p>";
+    return;
+  }
+
+  const img = styles[style];
+
+  preview.innerHTML = `
+    <div class="tag">✨ ${style.toUpperCase()} Room (${size})</div>
+    <img src="${img}" alt="Room Design">
+    <p>AI-styled preview based on your preferences</p>
+  `;
+}
+</script>
+
+</body>
+</html>
