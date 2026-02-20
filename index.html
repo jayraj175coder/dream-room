@@ -7,9 +7,9 @@
 
 <style>
 :root {
-  --bg1: #f3e5f5;
-  --bg2: #e1f5fe;
-  --accent: #6a1b9a;
+  --bg1: #0f2027;
+  --bg2: #2c5364;
+  --accent: #00c9a7;
 }
 
 body {
@@ -20,27 +20,36 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  color: white;
 }
 
 .app {
   width: 95%;
-  max-width: 700px;
-  background: #fff;
+  max-width: 750px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
   border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 25px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 
 h1 {
   text-align: center;
+  margin-bottom: 10px;
+}
+
+p {
+  text-align: center;
+  opacity: 0.8;
 }
 
 input, select {
   width: 100%;
   padding: 12px;
-  margin: 8px 0;
+  margin: 10px 0;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: none;
+  outline: none;
 }
 
 button {
@@ -48,10 +57,15 @@ button {
   padding: 12px;
   border: none;
   background: var(--accent);
-  color: white;
-  border-radius: 10px;
+  color: black;
   font-weight: bold;
+  border-radius: 10px;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: scale(1.03);
 }
 
 .preview {
@@ -62,12 +76,15 @@ button {
 .preview img {
   width: 100%;
   border-radius: 15px;
-  margin-top: 10px;
+  margin-top: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
 }
 
-.tag {
-  margin-top: 10px;
-  font-weight: bold;
+.card {
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
 }
 </style>
 </head>
@@ -76,8 +93,9 @@ button {
 
 <div class="app">
   <h1>🏠 Dream Room Visualizer</h1>
+  <p>Visualize your dream room with AI-style design ✨</p>
 
-  <input type="text" id="size" placeholder="Enter room size (e.g. 10x12 ft)">
+  <input type="text" id="size" placeholder="Room size (e.g. 10x12 ft)">
   
   <select id="style">
     <option value="">Select Style</option>
@@ -86,12 +104,13 @@ button {
     <option value="minimal">Minimal</option>
     <option value="modern">Modern</option>
     <option value="gaming">Gaming</option>
+    <option value="luxury">Luxury</option>
   </select>
 
-  <button onclick="generateRoom()">Generate Room</button>
+  <button onclick="generateRoom()">✨ Generate Dream Room</button>
 
   <div class="preview" id="preview">
-    <p>Enter details to visualize your dream room</p>
+    <p>Enter details to generate your dream room</p>
   </div>
 </div>
 
@@ -101,7 +120,8 @@ const styles = {
   boho: "https://images.unsplash.com/photo-1505691938895-1758d7feb511",
   minimal: "https://images.unsplash.com/photo-1493666438817-866a91353ca9",
   modern: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6",
-  gaming: "https://images.unsplash.com/photo-1605902711622-cfb43c44367f"
+  gaming: "https://images.unsplash.com/photo-1605902711622-cfb43c44367f",
+  luxury: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
 };
 
 function generateRoom() {
@@ -110,16 +130,24 @@ function generateRoom() {
   const preview = document.getElementById("preview");
 
   if (!size || !style) {
-    preview.innerHTML = "<p>Please fill all details</p>";
+    preview.innerHTML = "<p>⚠️ Please fill all fields</p>";
     return;
   }
 
-  const img = styles[style];
+  const prompt = `A ${style} style room of size ${size} with aesthetic furniture, lighting, and decor`;
 
   preview.innerHTML = `
-    <div class="tag">✨ ${style.toUpperCase()} Room (${size})</div>
-    <img src="${img}" alt="Room Design">
-    <p>AI-styled preview based on your preferences</p>
+    <div class="card">
+      <h3>🧠 AI Prompt Generated:</h3>
+      <p>${prompt}</p>
+    </div>
+
+    <img src="${styles[style]}" alt="Room">
+
+    <div class="card">
+      <h3>🎨 Design Explanation:</h3>
+      <p>This ${style} room is optimized for a ${size} layout with curated furniture, lighting, and space efficiency.</p>
+    </div>
   `;
 }
 </script>
