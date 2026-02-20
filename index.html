@@ -1,156 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dream Room Visualizer</title>
+# 🏠 Dream Room Visualizer
 
-<style>
-:root {
-  --bg1: #0f2027;
-  --bg2: #2c5364;
-  --accent: #00c9a7;
-}
+An AI-inspired web app that allows users to visualize their dream room by entering room size and selecting a design style.
 
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(120deg, var(--bg1), var(--bg2));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  color: white;
-}
+---
 
-.app {
-  width: 95%;
-  max-width: 750px;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-}
+## 🚀 Features
 
-h1 {
-  text-align: center;
-  margin-bottom: 10px;
-}
+- 📏 Input room size (e.g., 10x12 ft)
+- 🎨 Choose from multiple styles:
+  - Cyberpunk
+  - Boho
+  - Minimal
+  - Modern
+  - Gaming
+  - Luxury
+- 🧠 AI-style prompt generation
+- 🖼️ Dynamic room visualization
+- 💡 Design explanation for better understanding
+- ⚡ Instant results (no backend required)
 
-p {
-  text-align: center;
-  opacity: 0.8;
-}
+---
 
-input, select {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-}
+## 🛠️ Tech Stack
 
-button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  background: var(--accent);
-  color: black;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-}
+- HTML5
+- CSS3 (Glassmorphism UI)
+- Vanilla JavaScript
 
-button:hover {
-  transform: scale(1.03);
-}
+---
 
-.preview {
-  margin-top: 20px;
-  text-align: center;
-}
+## 🧠 How It Works
 
-.preview img {
-  width: 100%;
-  border-radius: 15px;
-  margin-top: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-}
+1. User enters room size  
+2. Selects a style  
+3. App generates an **AI-style prompt**  
+4. Displays a matching room visualization  
+5. Provides a design explanation  
 
-.card {
-  margin-top: 15px;
-  padding: 15px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 12px;
-}
-</style>
-</head>
+---
 
-<body>
+## 📂 Project Structure
+Dream-Room-Visualizer/
+│
+├── index.html
+└── README.md
 
-<div class="app">
-  <h1>🏠 Dream Room Visualizer</h1>
-  <p>Visualize your dream room with AI-style design ✨</p>
 
-  <input type="text" id="size" placeholder="Room size (e.g. 10x12 ft)">
-  
-  <select id="style">
-    <option value="">Select Style</option>
-    <option value="cyberpunk">Cyberpunk</option>
-    <option value="boho">Boho</option>
-    <option value="minimal">Minimal</option>
-    <option value="modern">Modern</option>
-    <option value="gaming">Gaming</option>
-    <option value="luxury">Luxury</option>
-  </select>
+---
 
-  <button onclick="generateRoom()">✨ Generate Dream Room</button>
+## ▶️ Getting Started
 
-  <div class="preview" id="preview">
-    <p>Enter details to generate your dream room</p>
-  </div>
-</div>
+1. Clone the repo
+```bash
+git clone https://github.com/your-username/dream-room-visualizer.git
 
-<script>
-const styles = {
-  cyberpunk: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-  boho: "https://images.unsplash.com/photo-1505691938895-1758d7feb511",
-  minimal: "https://images.unsplash.com/photo-1493666438817-866a91353ca9",
-  modern: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6",
-  gaming: "https://images.unsplash.com/photo-1605902711622-cfb43c44367f",
-  luxury: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
-};
+Open in browser
 
-function generateRoom() {
-  const size = document.getElementById("size").value;
-  const style = document.getElementById("style").value;
-  const preview = document.getElementById("preview");
-
-  if (!size || !style) {
-    preview.innerHTML = "<p>⚠️ Please fill all fields</p>";
-    return;
-  }
-
-  const prompt = `A ${style} style room of size ${size} with aesthetic furniture, lighting, and decor`;
-
-  preview.innerHTML = `
-    <div class="card">
-      <h3>🧠 AI Prompt Generated:</h3>
-      <p>${prompt}</p>
-    </div>
-
-    <img src="${styles[style]}" alt="Room">
-
-    <div class="card">
-      <h3>🎨 Design Explanation:</h3>
-      <p>This ${style} room is optimized for a ${size} layout with curated furniture, lighting, and space efficiency.</p>
-    </div>
-  `;
-}
-</script>
-
-</body>
-</html>
+cd dream-room-visualizer
+start index.html
