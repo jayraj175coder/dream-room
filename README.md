@@ -40,3 +40,21 @@ An AI-inspired web app that allows users to visualize their dream room by enteri
 ---
 
 ## 📂 Project Structure
+Dream-Room-Visualizer/
+│
+├── index.html
+└── README.md
+
+
+---
+
+## ▶️ Getting Started
+
+1. Clone the repo
+```bash
+git clone https://github.com/your-username/dream-room-visualizer.git
+
+Open in browser
+
+cd dream-room-visualizer
+start index.html
